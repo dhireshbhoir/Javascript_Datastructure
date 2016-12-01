@@ -1,0 +1,33 @@
+<!--
+*
+    FileName: randomnumbers.html *
+    CreatedBy: Dhiresh bhoir *
+    Date:21-11-2016 *
+    Purpose:Generate Random Whole Numbers with JavaScript Math.random()
+
+     -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random numbers</title>
+    <script>
+        function showRandomNumbers() {
+            var num = document.getElementById("number").value;
+            var randomNumbers = [];
+            for (var i = 0; i < num; i++) {
+                randomNumbers.push(Math.round(Math.random() * 10000));
+            }
+            document.getElementById("id").innerHTML = 'Randomnumbers:' + randomNumbers;
+        }
+    </script>
+</head>
+<body>
+<input type="text" name="number" id="number">
+<input type="button" value="Show" name="show" onclick="showRandomNumbers()">
+<p id="id"></p>
+</body>
+</html>

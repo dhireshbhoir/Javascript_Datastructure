@@ -1,0 +1,49 @@
+<!--/**
+ * FileName:vehicle.html
+ * CreatedBy: Dhiresh bhoir
+ * Date :24-11-2016
+ * Purpose : Make a Vehicle Object and make maxSpeed,type,displacement as public properties and public methods to set maxSpeed,type and displacement .Make a Bike Object which will have private property called getSpeed and Bike object will inherit all the property of the Vehicle Object.
+ */-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vehicle</title>
+    <script type="text/javascript">
+        //function vehicle
+        var vehicle = function () {
+        }
+        vehicle.prototype.setMaxSpeed = function (speed) {
+            this.maxSpeed = speed;
+            return this.maxSpeed;
+        };
+        //prototype to det vehicle type
+        vehicle.prototype.setVehicleType = function (vehicleType) {
+            this.vehicleType = vehicleType;
+            return this.vehicleType;
+        };
+        //prototype to det vehicle displacemet
+        vehicle.prototype.setDisplacement = function (arg) {
+            this.displacement = arg;
+            return this.displacement;
+        };
+
+        var bike = new vehicle();
+
+        bike.getspeed = function () {
+            return this.maxSpeed;
+        };
+        bike.setVehicleType("hero");
+        bike.setMaxSpeed(200);
+        bike.setDisplacement("abc");
+
+        document.write("Bike speed : " + bike.getspeed());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

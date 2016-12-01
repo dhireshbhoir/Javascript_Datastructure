@@ -1,0 +1,68 @@
+<!--/**
+ * FileName:album.html
+ * CreatedBy: Dhiresh bhoir
+ * Date :22-11-2016
+ * Purpose :Function to modify albums data
+ */-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Album</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script>
+        function tracks() {
+            var collection = {
+                2548: {
+                    album: "Slippery When Wet",
+                    artist: "Bon Jovi",
+                    tracks: [
+                        "Let It Rock",
+                        "You Give Love a Bad Name"
+                    ]
+                },
+                2468: {
+                    album: "1999",
+                    artist: "Prince",
+
+                    tracks: [
+                        "1999",
+                        "Little Red Corvette"
+                    ]
+                },
+                1245: {
+                    artist: "Robert Palmer",
+                    tracks: []
+                },
+                5439: {
+                    album: "ABBA Gold"
+                }
+            };
+
+            document.writeln("Before :" +
+                    JSON.stringify(collection)+"<br>");
+            function update(id, prop, value) {
+                if (value === '') {
+                    delete collection[id][prop];
+                } else if (prop !== 'tracks') {
+                    collection[id][prop] = value;
+                } else {
+                    collection[id][prop].push(value);
+                }
+                return collection;
+            }
+
+            document.writeln("After :" +
+                    JSON.stringify(update(5439, " artist ", "ABBA ")));
+        }
+    </script>
+</head>
+
+<body onload="tracks()">
+<p id="before"></p>
+<p id="after"></p>
+</body>
+
+</html>

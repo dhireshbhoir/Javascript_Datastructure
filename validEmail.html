@@ -1,0 +1,111 @@
+<!--/**
+ * FileName:validEmail.html
+ * CreatedBy: Dhiresh bhoir
+ * Date :29-11-2016
+ * Purpose :Find all the valid email address from a text file fetched from a URL
+ */-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        a.selected {
+            background-color: #1F75CC;
+            color: white;
+            z-index: 100;
+        }
+
+        .messagepop {
+            background-color: #FFFFFF;
+            border: 1px solid #999999;
+            cursor: default;
+            display: none;
+            margin-top: 15px;
+            position: absolute;
+            text-align: left;
+            width: 394px;
+            z-index: 50;
+            padding: 25px 25px 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 3px;
+            padding-left: 15px;
+            text-indent: -15px;
+        }
+
+        .messagepop p, .messagepop.div {
+            border-bottom: 1px solid #EFEFEF;
+            margin: 8px 0;
+            padding-bottom: 8px;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script !src="">
+        function deselect(e) {
+            $('.pop').slideFadeToggle(function () {
+                e.removeClass('selected');
+            });
+        }
+
+        $(function () {
+            $('#show').on('click', function () {
+
+                if ($(this).hasClass('selected')) {
+                    deselect($(this));
+                } else {
+                    $(this).addClass('selected');
+                    $('.pop').slideFadeToggle();
+                }
+                return false;
+            });
+
+            $('.close').on('click', function () {
+                deselect($('#contact'));
+                return false;
+            });
+        });
+
+        $.fn.slideFadeToggle = function (easing, callback) {
+            return this.animate({opacity: 'toggle', height: 'toggle'}, 'fast', easing, callback);
+        };
+        //fetching list of email addresses from url
+        jQuery.get('emailList.txt', function (data) {
+            var lines = data.split("\n");
+            for (var i = 0, len = lines.length; i < len; i++) {
+                if (validateEmail(lines[i])) {    //checking email is valid or not by calling validateEmail function
+                    $("#list").append("<br>" + lines[i]);
+                }
+            }
+        });
+        //Functuin to check email is valid or not
+        function validateEmail(sEmail) {
+            var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+            if (filter.test(sEmail)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="messagepop pop">
+    <p id="list"><b>Valid Email Addresses :-</b><br></p>
+    <p><a class="close" href="/">Close</a></p>
+</div>
+
+<div class="button">
+    <input type="button" id="show" value="Show valid Email addressses!"/>
+</div>
+
+</body>
+</html>
